@@ -1,0 +1,35 @@
+# Core MCP and FastMCP dependencies
+mcp[cli]
+
+# Image processing
+pillow
+
+# HTTP clients and async I/O
+httpx
+aiohttp
+aiofiles
+
+# Data validation and settings
+pydantic
+pydantic-settings
+python-dotenv
+
+# OpenAI API client
+openai
+
+# Google Cloud authentication (for Gemini provider)
+google-auth
+google-auth-oauthlib
+
+# Development and testing dependencies
+pytest
+pytest-asyncio
+pytest-mock
+pytest-cov
+pytest-benchmark
+respx
+
+# Code formatting and linting
+black
+ruff
+mypy

@@ -366,7 +366,7 @@ Built-in templates for common use cases:
 - **Hero Banners**: Website hero sections
 - **Email Headers**: Newsletter headers
 - **Video Thumbnails**: YouTube/video thumbnails
-- **Infographics**: Data visualization images
+- **Infographics**: Data visualization images 
 - **Artistic Style**: Specific art movement styles
 
 ## Configuration

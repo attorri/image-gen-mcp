@@ -1327,6 +1327,75 @@ async def email_header(
     )
 
 
+@mcp.prompt(
+    name="pencil_drawing",
+    title="Adaptive Pencil Drawing",
+    description=(
+        "Generate educational pencil drawing exercises that adapt to your skill level. "
+        "Perfect for learning fundamentals, practicing techniques, and improving drawing skills. "
+        "Just specify what you want to draw and the system handles the rest!"
+    ),
+)
+async def pencil_drawing(
+    subject: str = Field(
+        ..., 
+        description="What you want to draw - the system automatically adapts the educational approach based on complexity",
+        examples=[
+            "a cat", 
+            "basic shapes", 
+            "figure in motion", 
+            "portrait study", 
+            "landscape scene",
+            "flower",
+            "tree",
+            "person sitting"
+        ]
+    ),
+    skill_level: str = Field(
+        default="auto",
+        description="Your drawing skill level - 'auto' adapts based on subject complexity and your progress",
+        examples=["auto", "beginner", "intermediate", "advanced"]
+    ),
+    focus_area: str = Field(
+        default="auto",
+        description="Specific skill to focus on - 'auto' selects based on subject and skill level",
+        examples=["auto", "observation", "form_construction", "movement_gesture", "light_shadow", "proportions"]
+    ),
+    session_length: str = Field(
+        default="auto",
+        description="Time available for drawing practice - affects complexity and approach",
+        examples=["auto", "quick", "medium", "extended", "study"]
+    ),
+    learning_intent: str = Field(
+        default="auto",
+        description="What you want to achieve - 'auto' detects from subject and context",
+        examples=["auto", "practice_fundamentals", "improve_technique", "creative_expression", "study_reference"]
+    ),
+) -> dict[str, Any]:
+    """
+    Generate adaptive pencil drawing exercises for educational practice.
+    
+    This is the main entry point for drawing education. Users can simply say:
+    - "I want to draw a cat" 
+    - "Help me practice drawing people"
+    - "Quick gesture drawing session"
+    
+    The system automatically:
+    - Adapts to skill level based on subject complexity
+    - Chooses appropriate educational focus
+    - Provides contextual learning guidance
+    - Routes to specialized exercises when needed
+    """
+    return await _generate_from_template(
+        "pencil_drawing",
+        subject=subject,
+        skill_level=skill_level,
+        focus_area=focus_area,
+        session_length=session_length,
+        learning_intent=learning_intent,
+    )
+
+
 def main():
     """Main entry point for FastMCP server."""
     # Parse command line arguments
