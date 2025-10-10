@@ -1,6 +1,7 @@
 """Main MCP server implementation for Image Gen.
 
-This server integrates multiple image-generation providers behind a unified MCP interface.
+This server integrates multiple image-generation providers behind a unified MCP
+interface.
 """
 
 import argparse
@@ -1331,24 +1332,27 @@ async def email_header(
     name="pencil_drawing",
     title="Drawing Reference Generator",
     description=(
-        "Generate clear structural references an artist of the specified parameters can use to pencil draw. "
-        "Creates a clean line art and construction references that artists can use to draw. "
+        "Generate clear structural references an artist can use to pencil draw. "
+        "Creates clean line art and construction references that artists can use. "
         "Shows form, proportions, and structure clearly."
     ),
 )
 async def pencil_drawing(
     subject: str = Field(
-        ..., 
-        description="What you want to draw - creates clear structural reference material",
+        ...,
+        description=(
+            "What you want to draw - creates clear structural reference "
+            "material"
+        ),
         examples=[
-            "cat", 
+            "cat",
             "human hand",
-            "standing figure", 
-            "geometric shapes", 
+            "standing figure",
+            "geometric shapes",
             "still life objects",
             "draped fabric",
             "tree",
-            "portrait head"
+            "portrait head",
         ]
     ),
     complexity_level: str = Field(
@@ -1359,7 +1363,15 @@ async def pencil_drawing(
     study_type: str = Field(
         default="observational",
         description="Type of reference needed",
-        examples=["observational", "gesture", "contour", "value", "form", "anatomy", "proportions"]
+        examples=[
+            "observational",
+            "gesture",
+            "contour",
+            "value",
+            "form",
+            "anatomy",
+            "proportions",
+        ],
     ),
     drawing_style: str = Field(
         default="clean line art with clear structure",
@@ -1368,8 +1380,8 @@ async def pencil_drawing(
             "clean line art with clear structure",
             "construction breakdown showing basic shapes",
             "contour drawing with essential edges",
-            "simplified form study with proportions"
-        ]
+            "simplified form study with proportions",
+        ],
     ),
     form_clarity: str = Field(
         default="clear proportions and structure",
@@ -1378,13 +1390,18 @@ async def pencil_drawing(
             "clear proportions and structure",
             "basic shape construction",
             "form and volume relationships",
-            "essential contours and edges"
-        ]
+            "essential contours and edges",
+        ],
     ),
     composition: str = Field(
         default="standard",
         description="How the subject is framed",
-        examples=["close-up detail view", "full subject in frame", "three-quarter view", "standard framing"]
+        examples=[
+            "close-up detail view",
+            "full subject in frame",
+            "three-quarter view",
+            "standard framing",
+        ],
     ),
 ) -> dict[str, Any]:
     """Generate drawing references an artist can use to draw"""
@@ -1403,8 +1420,9 @@ async def pencil_drawing(
     name="gesture_drawing",
     title="Gesture Drawing Practice",
     description=(
-        "Generate clean gesture drawing references for capturing movement and essence. "
-        "Creates simplified line drawings perfect for quick gesture practice and building upon."
+        "Generate clean gesture drawing references for capturing movement and "
+        "essence. Creates simplified line drawings perfect for quick gesture "
+        "practice and building upon."
     ),
 )
 async def gesture_drawing(
@@ -1413,31 +1431,51 @@ async def gesture_drawing(
         description="Subject for gesture practice",
         examples=[
             "figure in motion",
-            "dancer in pose", 
+            "dancer in pose",
             "animal running",
             "person sitting",
-            "tree in wind"
+            "tree in wind",
         ]
     ),
     line_quality: str = Field(
         default="flowing expressive",
         description="Quality and character of lines",
-        examples=["flowing expressive", "bold confident", "loose gestural", "varied weight"]
+        examples=[
+            "flowing expressive",
+            "bold confident",
+            "loose gestural",
+            "varied weight",
+        ]
     ),
     capture_focus: str = Field(
         default="overall movement and energy",
         description="What aspect to emphasize",
-        examples=["overall movement and energy", "weight and balance", "rhythm and flow", "proportional relationships"]
+        examples=[
+            "overall movement and energy",
+            "weight and balance",
+            "rhythm and flow",
+            "proportional relationships",
+        ]
     ),
     construction_visibility: str = Field(
         default="subtle",
         description="How visible construction and guidelines should be",
-        examples=["clearly visible", "subtle underlying", "minimal structural", "no construction lines"]
+        examples=[
+            "clearly visible",
+            "subtle underlying",
+            "minimal structural",
+            "no construction lines",
+        ]
     ),
     movement_emphasis: str = Field(
         default="natural flow",
         description="Type of movement to emphasize",
-        examples=["dynamic action", "natural flow", "weight shift", "directional force"]
+        examples=[
+            "dynamic action",
+            "natural flow",
+            "weight shift",
+            "directional force",
+        ]
     ),
 ) -> dict[str, Any]:
     """Generate gesture drawing references for movement and essence practice."""
@@ -1463,37 +1501,72 @@ async def shapes_study(
     primary_shape: str = Field(
         ...,
         description="Main geometric form to study",
-        examples=["cube", "sphere", "cylinder", "cone", "pyramid"]
+        examples=[
+            "cube",
+            "sphere",
+            "cylinder",
+            "cone",
+            "pyramid",
+        ],
     ),
     secondary_shapes: str = Field(
         default="none",
         description="Additional shapes for composition",
-        examples=["none", "smaller cubes", "intersecting cylinders", "stacked spheres"]
+        examples=[
+            "none",
+            "smaller cubes",
+            "intersecting cylinders",
+            "stacked spheres",
+        ],
     ),
     lighting_setup: str = Field(
         default="single strong",
         description="Lighting approach for form study",
-        examples=["single strong", "soft diffused", "dramatic directional"]
+        examples=[
+            "single strong",
+            "soft diffused",
+            "dramatic directional",
+        ],
     ),
     light_direction: str = Field(
         default="upper left",
         description="Direction of primary light source",
-        examples=["upper left", "upper right", "directly above", "side lighting"]
+        examples=[
+            "upper left",
+            "upper right",
+            "directly above",
+            "side lighting",
+        ],
     ),
     shading_technique: str = Field(
         default="smooth blending",
         description="Shading method to practice",
-        examples=["smooth blending", "hatching lines", "cross-hatching", "stippling dots"]
+        examples=[
+            "smooth blending",
+            "hatching lines",
+            "cross-hatching",
+            "stippling dots",
+        ],
     ),
     construction_visibility: str = Field(
         default="clearly visible",
         description="How visible construction lines should be",
-        examples=["clearly visible", "lightly indicated", "minimal guidelines", "clean finished"]
+        examples=[
+            "clearly visible",
+            "lightly indicated",
+            "minimal guidelines",
+            "clean finished",
+        ],
     ),
     learning_objective: str = Field(
         default="form and volume understanding",
         description="Primary learning goal",
-        examples=["form and volume understanding", "shading technique", "construction method", "spatial relationships"]
+        examples=[
+            "form and volume understanding",
+            "shading technique",
+            "construction method",
+            "spatial relationships",
+        ],
     ),
 ) -> dict[str, Any]:
     """Generate basic shapes references for fundamental form study."""
@@ -1514,7 +1587,8 @@ async def shapes_study(
     title="Contour Drawing Exercise",
     description=(
         "Generate clean contour line drawings for observation skill development. "
-        "Creates simplified line drawings focused on edges and form relationships."
+        "Creates simplified line drawings focused on edges and form "
+        "relationships."
     ),
 )
 async def contour_drawing(
@@ -1523,31 +1597,51 @@ async def contour_drawing(
         description="Subject for contour drawing practice",
         examples=[
             "still life object",
-            "plant with complex leaves", 
+            "plant with complex leaves",
             "crumpled paper",
             "hand in various positions",
-            "household object"
+            "household object",
         ]
     ),
     contour_type: str = Field(
         default="modified blind",
         description="Type of contour drawing technique",
-        examples=["blind contour", "modified blind", "pure contour", "cross-contour"]
+        examples=[
+            "blind contour",
+            "modified blind",
+            "pure contour",
+            "cross-contour",
+        ]
     ),
     line_weight: str = Field(
         default="varied expressive",
         description="Line weight approach",
-        examples=["consistent thin", "varied expressive", "bold confident", "delicate precise"]
+        examples=[
+            "consistent thin",
+            "varied expressive",
+            "bold confident",
+            "delicate precise",
+        ]
     ),
     observation_focus: str = Field(
         default="edge relationships",
         description="What to focus observation on",
-        examples=["edge relationships", "form transitions", "negative spaces", "surface contours"]
+        examples=[
+            "edge relationships",
+            "form transitions",
+            "negative spaces",
+            "surface contours",
+        ]
     ),
     drawing_speed: str = Field(
         default="slow deliberate",
         description="Pace of drawing for different learning goals",
-        examples=["slow deliberate", "moderate steady", "quick gestural", "varied rhythm"]
+        examples=[
+            "slow deliberate",
+            "moderate steady",
+            "quick gestural",
+            "varied rhythm",
+        ]
     )
 ) -> dict[str, Any]:
     """Generate contour drawing references for observation practice."""
@@ -1563,10 +1657,11 @@ async def contour_drawing(
 
 @mcp.prompt(
     name="value_study",
-    title="Value Study Exercise", 
+    title="Value Study Exercise",
     description=(
         "Generate clean value study references for light and shadow practice. "
-        "Creates simplified drawings focused on value relationships and form rendering."
+        "Creates simplified drawings focused on value relationships and form "
+        "rendering."
     ),
 )
 async def value_study(
@@ -1578,28 +1673,49 @@ async def value_study(
             "single object with strong lighting",
             "geometric forms",
             "draped fabric",
-            "portrait head"
+            "portrait head",
         ]
     ),
     shading_method: str = Field(
         default="smooth blending",
         description="Shading technique approach",
-        examples=["smooth blending", "hatching patterns", "stippling dots", "block shading"]
+        examples=[
+            "smooth blending",
+            "hatching patterns",
+            "stippling dots",
+            "block shading",
+        ]
     ),
     light_source: str = Field(
         default="single directional",
         description="Lighting setup for value study",
-        examples=["single directional", "soft window light", "dramatic spot light", "overcast diffused"]
+        examples=[
+            "single directional",
+            "soft window light",
+            "dramatic spot light",
+            "overcast diffused",
+        ]
     ),
     study_emphasis: str = Field(
         default="form definition",
         description="Primary focus of the value study",
-        examples=["form definition", "light pattern", "cast shadows", "reflected light", "value relationships"]
+        examples=[
+            "form definition",
+            "light pattern",
+            "cast shadows",
+            "reflected light",
+            "value relationships",
+        ]
     ),
     simplification_level: str = Field(
         default="moderate",
         description="How simplified the study should be",
-        examples=["highly simplified", "moderate detail", "refined finish", "quick study"]
+        examples=[
+            "highly simplified",
+            "moderate detail",
+            "refined finish",
+            "quick study",
+        ]
     ),
 ) -> dict[str, Any]:
     """Generate value study references for light and shadow practice."""
